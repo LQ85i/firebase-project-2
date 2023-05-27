@@ -1,0 +1,30 @@
+#main-view {
+    background-color: #DCE5DB;
+    max-height: 1080px;
+    max-width: 100vw;
+}
+
+#main-view .header {
+    min-height: 70px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#main-view .header .images {
+    display: flex;
+    margin-left: 20px;
+    gap: 10px;
+}
+
+#main-view .art-container {
+    overflow: hidden;
+    max-height: 620px;
+    border: 1px solid #000;
+}
+
+#main-view .art {
+    border: 1px solid #000;
+}
