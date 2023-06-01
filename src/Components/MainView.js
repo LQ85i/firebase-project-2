@@ -14,8 +14,9 @@ const MainView = (props) => {
 
     const scrollContainerRef = useRef(null);
 
-    const scaleMin = 1;
+    const scaleMin = 0.4;
     const scaleMax = 3.01;
+    const originalHeight = 3100;
 
     useEffect(() => {
         const containerElement = scrollContainerRef.current;
@@ -23,13 +24,13 @@ const MainView = (props) => {
         containerElement.scrollTop = scrollTop;
     }, [scrollLeft, scrollTop, scale]);
 
-    
+
     const handleScroll = (e) => {
-        
+
         const factor = 0.2;
         const delta = -e.deltaY / 120;
         let newScale = scale + delta * factor;
-        
+
         if (newScale < scaleMin) { return }
         if (newScale > scaleMax) { return }
 
@@ -39,23 +40,29 @@ const MainView = (props) => {
         const container = scrollContainerRef.current;
         const oldScrollLeft = container.scrollLeft;
         const oldScrollTop = container.scrollTop;
-        const mouseX = e.nativeEvent.offsetX;
-        const mouseY = e.nativeEvent.offsetY;
+        const rect = e.target.parentNode.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
+        const imageWidth = container.scrollWidth;
+        const imageHeight = container.scrollHeight;
+        const scaleRatio = newScale / scale;
 
-        const zoomFactor = 1 - (1 / (1 + factor));
-        const newScrollLeft = oldScrollLeft + (mouseX/containerWidth)*zoomFactor*containerWidth*delta;
-        const newScrollTop = oldScrollTop + (mouseY/containerHeight)*zoomFactor*containerHeight*delta;
+        const newScrollLeft = scaleRatio*(oldScrollLeft + mouseX) - mouseX;
+        const newScrollTop = scaleRatio*(oldScrollTop + mouseY) - mouseY;
 
-        const maxScrollLeft = container.scrollWidth - containerWidth;
-        const maxScrollTop = container.scrollHeight - containerHeight;
+        const maxScrollLeft = imageWidth*scaleRatio - containerWidth;
+        const maxScrollTop = imageHeight*scaleRatio - containerHeight;
+
         setScrollLeft(Math.min(Math.max(newScrollLeft, 0), maxScrollLeft));
         setScrollTop(Math.min(Math.max(newScrollTop, 0), maxScrollTop));
     }
-    
-    const handleClick = (e) => {
-        console.log(scrollTop);
+
+    const handleDragScroll = (e) => {
+        const container = scrollContainerRef.current;
+        setScrollLeft(container.scrollLeft);
+        setScrollTop(container.scrollTop);
     }
 
     return (<div id="main-view">
@@ -71,7 +78,7 @@ const MainView = (props) => {
             className='art-container'
             hideScrollbars={false}
             innerRef={scrollContainerRef}
-            onClick={handleClick}
+            onScroll={handleDragScroll}
         >
             <img
                 className='art'
@@ -79,7 +86,8 @@ const MainView = (props) => {
                 alt="" draggable={false}
                 style={{
                     transformOrigin: "0 0",
-                    transform: `scale(${scale})`
+                    //transform: `scale(${scale})`
+                    height: originalHeight * scale
                 }}
                 onWheel={handleScroll}
             />
