@@ -19,13 +19,83 @@
     gap: 10px;
 }
 
+#main-view .header .images img {
+    border-radius: 5px;
+}
+
 #main-view .art-container {
     overflow: hidden;
     max-height: 620px;
-    border: 1px solid #000;
+    position:relative;
 }
 
 
 #main-view .art {
+    position:relative;
+    display: block;
+
+    margin: 0 auto;
+    
+}
+
+#main-view .clicked {
+    position: absolute;
+    border: 3px solid rgb(0, 127, 247);
+    border-style: dashed;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.521);
+    transform: translate(-52%,-52%) rotate(120deg);
+    opacity: 0;
+    transition: transform 0.2s, opacity 0.15s, width 0.15s, height 0.15s;
+}
+
+#main-view .clicked.visible {
+    transform: translate(-52%,-52%) rotate(360deg);
+    opacity: 1;
+    transition: transform 0.2s, opacity 0.15s, width 0.15s, height 0.15s;
+}
+
+#main-view .clicked-menu {
+    position: absolute;
+    border: 1px solid black;
+    box-shadow: 0 0 5px black;
+    background-color: #DCE5DB;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: -50px;
+    opacity: 0;
+    transition: opacity 0.2s, width 0s 0.2s, height 0s 0.2s;
+}
+
+#main-view .clicked-menu.visible {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+
+#main-view .clicked-menu .images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 7px;
+    padding: 4px;
+}
+
+#main-view .clicked-menu .images .frame {
+    border-radius: 5px;
+    max-width: 50px;
+    max-height: 80px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+#main-view .clicked-menu .images .frame:hover {
+    border-radius: 2px;
+    outline: 2px solid rgb(174, 0, 197);
+    box-shadow: 0 0 5px black;
+}
+
+#main-view .clicked-menu .images .frame:active {
     border: 1px solid #000;
 }
