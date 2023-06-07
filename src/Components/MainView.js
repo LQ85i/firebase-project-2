@@ -5,6 +5,7 @@ import rat2 from '../Images/rat2.png'
 import rat3 from '../Images/rat3.png'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
+import handleSubmit from '../handles/handlesubmit';
 
 const MainView = (props) => {
 
@@ -13,6 +14,7 @@ const MainView = (props) => {
     const [scrollTop, setScrollTop] = useState(0);
     const [showClicked, setShowClicked] = useState(false);
     const [clickedPos, setClickedPos] = useState([0, 0]);
+    const [clickedPosDB, setClickedPosDB] = useState([0, 0]);
     const [characterIDs, setCharacterIDs] = useState([-1, -1, -1]);
     const [artContainerSize, setArtContainerSize] = useState([0, 0]);
 
@@ -82,8 +84,11 @@ const MainView = (props) => {
 
         setScrollLeft(actualScrollLeft);
         setScrollTop(actualScrollTop);
+        const clickedX = clickedPos[0] * scaleRatio;
+        const clickedY = clickedPos[1] * scaleRatio;
 
-        setClickedPos([clickedPos[0] * scaleRatio, clickedPos[1] * scaleRatio]);
+        setClickedPos([clickedX, clickedY]);
+        setClickedPosDB([parseInt(clickedX/newScale),parseInt(clickedY/newScale)])
     }
 
     const handleDragScroll = (e) => {
@@ -97,10 +102,10 @@ const MainView = (props) => {
                 setShowClicked(false);
                 return;
             }
-            clickedMenu(e);
+            saveClick(e);
             setShowClicked(true);
         } else if (e.currentTarget.parentNode.parentNode.className === "images") {
-            const index = [...e.currentTarget.parentNode.children].indexOf(e.currentTarget);
+            const index = [...e.currentTarget.parentNode.parentNode.children].indexOf(e.currentTarget.parentNode);
             checkIfCharacterFound(characterIDs[index]);
         }
         else {
@@ -109,17 +114,17 @@ const MainView = (props) => {
     }
 
     const checkIfCharacterFound = (characterID) => {
-        // TODO
-        // request firebase for character check
+        handleSubmit(characterID,clickedPosDB);
     }
 
-    const clickedMenu = (e) => {
+    const saveClick = (e) => {
         const rect = e.target.parentNode.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
         const relativeX = mouseX + scrollLeft;
         const relativeY = mouseY + scrollTop;
         setClickedPos([relativeX, relativeY]);
+        setClickedPosDB([parseInt(relativeX/scale), parseInt(relativeY/scale)])
     }
 
     const getClickMenuLeftPos = () => {
@@ -134,7 +139,7 @@ const MainView = (props) => {
             // close to right
             left = clickedPos[0] - menuWidth - circleRadius;
         } else {
-            // left and between
+            // close to left and between
             left = clickedPos[0] + circleRadius;
         }
         return left + "px"
@@ -146,7 +151,6 @@ const MainView = (props) => {
         const distanceTop = clickedPos[1] - topEdgeX;
         const distanceBottom = bottomEdgeX - clickedPos[1];
         const menuHeight = 70;
-        console.log(distanceBottom);
         let top = 0;
         if (distanceBottom < menuHeight) {
             // close to bottom
@@ -218,7 +222,6 @@ const MainView = (props) => {
                         <img className='rat3' src={rat3} alt="" onClick={handleClick} />
                     </div>
                 </div>
-
             </div>
         </ScrollContainer>
     </div>);
