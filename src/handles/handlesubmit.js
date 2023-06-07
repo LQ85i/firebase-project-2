@@ -1,21 +1,21 @@
 import { addDoc, collection } from "@firebase/firestore"
 import { firestore } from "../firebase_setup/firebase"
 
-const handleSubmit = (testdata) => {
+const handleSubmit = (id, pos) => {
 
     let collectionRef = collection(firestore, "click_coordinates") // Firebase creates this automatically
 
     let data = {
-        id: testdata[0],
-        x: testdata[1],
-        y: testdata[1]
+        id: id,
+        x: pos[0],
+        y: pos[1]
     }
     try {
         addDoc(collectionRef, data).then(() => {
-            console.log("write success");
+            console.log("character found!");
         }).catch(error => {
             if (error.code === "permission-denied") {
-                console.log("error: invalid input");
+                console.log("character not found!");
             }
         })
     } catch (err) {
