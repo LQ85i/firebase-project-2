@@ -81,19 +81,42 @@
     padding: 4px;
 }
 
-#main-view .clicked-menu .images .frame {
+#main-view .images .frame {
     border-radius: 5px;
     max-width: 50px;
     max-height: 80px;
     display: flex;
     overflow: hidden;
     justify-content: center;
+    position: relative;
 }
 
-#main-view .clicked-menu .images .frame:hover {
+#main-view .images .frame .icon-check-circle {
+    display: block;
+    position: absolute;
+    top: 25px;
+    width: 35px;
+    filter: invert(48%) sepia(89%) saturate(1909%) hue-rotate(86deg) brightness(128%) contrast(106%)
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.637))
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.637));
+}
+
+#main-view .images .frame .icon-check-circle.hidden {
+    display: none;
+}
+
+#main-view .images .frame.found {
+    outline: 4px solid rgb(21, 180, 0);
+}
+
+#main-view .clicked-menu .images .frame:not(.found):hover {
     border-radius: 2px;
     outline: 2px solid rgb(174, 0, 197);
     box-shadow: 0 0 5px black;
+}
+#main-view .clicked-menu .images .frame.found:hover {
+    outline: 4px solid rgb(21, 180, 0);
+    box-shadow: none;
 }
 
 #main-view .clicked-menu .images .frame:active {
