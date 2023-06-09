@@ -3,6 +3,7 @@ import film_rats from '../Images/film-rats-halfsize.jpg'
 import rat1 from '../Images/rat1.png'
 import rat2 from '../Images/rat2.png'
 import rat3 from '../Images/rat3.png'
+import icon_check_circle from '../Images/icon_check_circle.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
 import handleSubmit from '../handles/handlesubmit';
@@ -16,6 +17,7 @@ const MainView = (props) => {
     const [clickedPos, setClickedPos] = useState([0, 0]);
     const [clickedPosDB, setClickedPosDB] = useState([0, 0]);
     const [characterIDs, setCharacterIDs] = useState([-1, -1, -1]);
+    const [charactersFound, setCharactersFound] = useState({});
     const [artContainerSize, setArtContainerSize] = useState([0, 0]);
 
     const scrollContainerRef = useRef(null);
@@ -42,7 +44,15 @@ const MainView = (props) => {
     const fetchCharacterIDs = () => {
         // TODO
         // request firebase for IDs
-        setCharacterIDs([0, 1, 2]);
+
+        const IDs = [0, 1, 2];
+        setCharacterIDs(IDs);
+
+        let obj = {};
+        obj[IDs[0]] = false;
+        obj[IDs[1]] = false;
+        obj[IDs[2]] = false;
+        setCharactersFound(obj)
     }
 
     const handleScroll = (e) => {
@@ -88,7 +98,7 @@ const MainView = (props) => {
         const clickedY = clickedPos[1] * scaleRatio;
 
         setClickedPos([clickedX, clickedY]);
-        setClickedPosDB([parseInt(clickedX/newScale),parseInt(clickedY/newScale)])
+        setClickedPosDB([parseInt(clickedX / newScale), parseInt(clickedY / newScale)])
     }
 
     const handleDragScroll = (e) => {
@@ -97,7 +107,8 @@ const MainView = (props) => {
         setScrollTop(container.scrollTop);
     }
     const handleClick = (e) => {
-        if (e.currentTarget.className === "art") {
+        const targetClass = e.currentTarget.className;
+        if (targetClass === "art" || targetClass === "clicked") {
             if (showClicked) {
                 setShowClicked(false);
                 return;
@@ -107,14 +118,16 @@ const MainView = (props) => {
         } else if (e.currentTarget.parentNode.parentNode.className === "images") {
             const index = [...e.currentTarget.parentNode.parentNode.children].indexOf(e.currentTarget.parentNode);
             checkIfCharacterFound(characterIDs[index]);
+            setShowClicked(false);
         }
         else {
             setShowClicked(false);
         }
     }
 
-    const checkIfCharacterFound = (characterID) => {
-        handleSubmit(characterID,clickedPosDB);
+    const checkIfCharacterFound = async (characterID) => {
+
+        handleSubmit(characterID, clickedPosDB, charactersFound, setCharactersFound);
     }
 
     const saveClick = (e) => {
@@ -124,7 +137,7 @@ const MainView = (props) => {
         const relativeX = mouseX + scrollLeft;
         const relativeY = mouseY + scrollTop;
         setClickedPos([relativeX, relativeY]);
-        setClickedPosDB([parseInt(relativeX/scale), parseInt(relativeY/scale)])
+        setClickedPosDB([parseInt(relativeX / scale), parseInt(relativeY / scale)])
     }
 
     const getClickMenuLeftPos = () => {
@@ -166,12 +179,34 @@ const MainView = (props) => {
     }
 
     return (<div id="main-view">
-        <div className="header">
+        <div className="header" onClick={handleClick}>
             <div className="title">Find these rats:</div>
             <div className="images">
-                <img src={rat1} alt="" />
-                <img src={rat2} alt="" />
-                <img src={rat3} alt="" />
+                <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
+                    <img className='rat1' src={rat1} alt="" />
+                    <img
+                        className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                        src={icon_check_circle}
+                        alt=""
+                    />
+                </div>
+                <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
+                    <img className='rat2' src={rat2} alt="" />
+                    <img
+                        className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                        src={icon_check_circle}
+                        alt=""
+                    />
+                </div>
+                <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
+                    <img className='rat3' src={rat3} alt="" />
+                    <img
+                        className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                        src={icon_check_circle}
+                        alt=""
+                    />
+                </div>
+
             </div>
         </div>
         <ScrollContainer
@@ -201,6 +236,7 @@ const MainView = (props) => {
                     height: (showClicked ? 150 * scale : 0) + "px"
                 }}
                 onWheel={handleScroll}
+                onClick={handleClick}
             />
             <div
                 className={showClicked ? "clicked-menu visible" : "clicked-menu"}
@@ -212,14 +248,29 @@ const MainView = (props) => {
                 }}
             >
                 <div className='images'>
-                    <div className='frame'>
+                    <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
                         <img className='rat1' src={rat1} alt="" onClick={handleClick} />
+                        <img
+                            className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                            src={icon_check_circle}
+                            alt=""
+                        />
                     </div>
-                    <div className='frame'>
+                    <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
                         <img className='rat2' src={rat2} alt="" onClick={handleClick} />
+                        <img
+                            className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                            src={icon_check_circle}
+                            alt=""
+                        />
                     </div>
-                    <div className='frame'>
+                    <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
                         <img className='rat3' src={rat3} alt="" onClick={handleClick} />
+                        <img
+                            className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                            src={icon_check_circle}
+                            alt=""
+                        />
                     </div>
                 </div>
             </div>
