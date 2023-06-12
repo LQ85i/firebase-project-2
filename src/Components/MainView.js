@@ -108,6 +108,9 @@ const MainView = (props) => {
     }
     const handleClick = (e) => {
         const targetClass = e.currentTarget.className;
+        if (e.currentTarget.parentNode.className === "frame found") { 
+            return;
+        }
         if (targetClass === "art" || targetClass === "clicked") {
             if (showClicked) {
                 setShowClicked(false);
@@ -115,7 +118,7 @@ const MainView = (props) => {
             }
             saveClick(e);
             setShowClicked(true);
-        } else if (e.currentTarget.parentNode.parentNode.className === "images") {
+        } else if (e.currentTarget.parentNode.className === "frame") {
             const index = [...e.currentTarget.parentNode.parentNode.children].indexOf(e.currentTarget.parentNode);
             checkIfCharacterFound(characterIDs[index]);
             setShowClicked(false);
