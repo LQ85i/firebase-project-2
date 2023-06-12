@@ -7,6 +7,7 @@ import icon_check_circle from '../Images/icon_check_circle.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
 import handleSubmit from '../handles/handlesubmit';
+import MessageBox from './MessageBox';
 
 const MainView = (props) => {
 
@@ -19,6 +20,12 @@ const MainView = (props) => {
     const [characterIDs, setCharacterIDs] = useState([-1, -1, -1]);
     const [charactersFound, setCharactersFound] = useState({});
     const [artContainerSize, setArtContainerSize] = useState([0, 0]);
+
+    const [msgCharNotFound, setMsgCharNotFound] = useState(false);
+    const [showMsgBox, setShowMsgBox] = useState(false);
+    const [msgText, setMsgText] = useState("");
+    const [msgType, setMsgType] = useState("");
+    const msgBoxDuration = 5000;
 
     const scrollContainerRef = useRef(null);
 
@@ -37,9 +44,50 @@ const MainView = (props) => {
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
         setArtContainerSize([containerWidth, containerHeight]);
-
         fetchCharacterIDs();
     }, []);
+
+    useEffect(() => {
+        if (showMsgBox) {
+            const timer = setTimeout(() => {
+                setShowMsgBox(false);
+            }, msgBoxDuration);
+            return () => {
+                clearTimeout(timer);
+            }
+        }
+
+    }, [showMsgBox]);
+
+    useEffect(() => {
+        let sum = 0;
+        for (let i = 0; i < 3; i++) {
+            const id = characterIDs[i];
+            if (charactersFound[id]) {
+                sum++;
+            }
+        }
+        if (sum === 1 || sum === 2) {
+            setMsgText("You found a correct rat!");
+            setMsgType("character-found");
+            setShowMsgBox(true);
+        }
+        else if (sum === 3) {
+            setMsgText("Congratulations, you found all three rats!");
+            setMsgType("all-characters-found");
+            setShowMsgBox(true);
+        }
+
+    }, [charactersFound, characterIDs]);
+
+    useEffect(() => {
+        if (msgCharNotFound) {
+            setMsgText("No correct rat found, try again!");
+            setMsgType("character-not-found");
+            setShowMsgBox(true);
+            setMsgCharNotFound(false);
+        }
+    }, [msgCharNotFound]);
 
     const fetchCharacterIDs = () => {
         // TODO
@@ -108,7 +156,7 @@ const MainView = (props) => {
     }
     const handleClick = (e) => {
         const targetClass = e.currentTarget.className;
-        if (e.currentTarget.parentNode.className === "frame found") { 
+        if (e.currentTarget.parentNode.className === "frame found") {
             return;
         }
         if (targetClass === "art" || targetClass === "clicked") {
@@ -120,6 +168,7 @@ const MainView = (props) => {
             setShowClicked(true);
         } else if (e.currentTarget.parentNode.className === "frame") {
             const index = [...e.currentTarget.parentNode.parentNode.children].indexOf(e.currentTarget.parentNode);
+            setShowMsgBox(false);
             checkIfCharacterFound(characterIDs[index]);
             setShowClicked(false);
         }
@@ -129,8 +178,13 @@ const MainView = (props) => {
     }
 
     const checkIfCharacterFound = async (characterID) => {
-
-        handleSubmit(characterID, clickedPosDB, charactersFound, setCharactersFound);
+        handleSubmit(
+            characterID,
+            clickedPosDB,
+            charactersFound,
+            setCharactersFound,
+            setMsgCharNotFound
+        );
     }
 
     const saveClick = (e) => {
@@ -278,6 +332,7 @@ const MainView = (props) => {
                 </div>
             </div>
         </ScrollContainer>
+        {showMsgBox && <MessageBox msgText={msgText} msgType={msgType} msgBoxDuration={msgBoxDuration} />}
     </div>);
 }
 

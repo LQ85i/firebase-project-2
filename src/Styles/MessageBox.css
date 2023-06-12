@@ -1,0 +1,51 @@
+
+#main-view .message-box {
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 
+    0 0 0 2px rgb(58, 58, 58),
+    0 0 0 5px rgb(190, 190, 190),
+    0 0 0 7px rgb(58, 58, 58),
+    0 0 25px black;
+    width: 400px;
+    height: 70px;
+    top: 150px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow:
+        0.07em 0 black,
+        0 0.07em black,
+        -0.07em 0 black,
+        0 -0.07em black,
+        0 0 5px black;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+#main-view .message-box.visible {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+#main-view .message-box.character-not-found {
+    width: 400px;
+    background-color: rgba(255, 0, 0, 0.7);
+}
+#main-view .message-box.character-found {
+    width: 350px;
+    background-color: rgba(0, 201, 27, 0.7);
+}
+#main-view .message-box.all-characters-found {
+    width: 600px;
+    background-color: rgba(0, 201, 27, 0.7);
+}

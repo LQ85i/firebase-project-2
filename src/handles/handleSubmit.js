@@ -2,7 +2,7 @@ import { addDoc, collection, deleteDoc } from "@firebase/firestore"
 import { firestore } from "../firebase_setup/firebase"
 
 
-const handleSubmit = (id, pos, charactersFound, setCharactersFound) => {
+const handleSubmit = (id, pos, charactersFound, setCharactersFound, setMsgCharNotFound) => {
 
     let collectionRef = collection(firestore, "click_coordinates") // Firebase creates this automatically
 
@@ -13,17 +13,17 @@ const handleSubmit = (id, pos, charactersFound, setCharactersFound) => {
     }
     try {
         addDoc(collectionRef, data).then((docRef) => {
-            console.log("character found!");
+            // character found
             let obj = { ...charactersFound };
             obj[id] = true;
             setCharactersFound(obj)
             return deleteDoc(docRef)
         })
-        .catch(error => {
-            if (error.code === "permission-denied") {
-                console.log("character not found!");
-            }
-        })
+            .catch(error => {
+                if (error.code === "permission-denied") {
+                    setMsgCharNotFound(true);
+                }
+            })
     } catch (err) {
         console.error(err);
     }
