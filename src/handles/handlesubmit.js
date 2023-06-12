@@ -1,5 +1,6 @@
-import { addDoc, collection } from "@firebase/firestore"
+import { addDoc, collection, deleteDoc } from "@firebase/firestore"
 import { firestore } from "../firebase_setup/firebase"
+
 
 const handleSubmit = (id, pos, charactersFound, setCharactersFound) => {
 
@@ -11,12 +12,14 @@ const handleSubmit = (id, pos, charactersFound, setCharactersFound) => {
         y: pos[1]
     }
     try {
-        addDoc(collectionRef, data).then(() => {
+        addDoc(collectionRef, data).then((docRef) => {
             console.log("character found!");
-            let obj = {...charactersFound};
+            let obj = { ...charactersFound };
             obj[id] = true;
             setCharactersFound(obj)
-        }).catch(error => {
+            return deleteDoc(docRef)
+        })
+        .catch(error => {
             if (error.code === "permission-denied") {
                 console.log("character not found!");
             }

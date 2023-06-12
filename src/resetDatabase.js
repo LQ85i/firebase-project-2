@@ -1,5 +1,6 @@
 import { collection, getDocs, updateDoc } from "@firebase/firestore"
 import { firestore } from "./firebase_setup/firebase"
+ 
 
 function generateRandomIndices() {
     let indices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -18,7 +19,8 @@ function generateRandomIndices() {
     return randomIndices;
 }
 
-function resetDatabase() {
+
+function randomizeCharacters() {
     let collectionRef = collection(firestore, "character_coordinates");
 
     // Generate random indices
@@ -34,10 +36,10 @@ function resetDatabase() {
             updateDoc(doc.ref, { isActive: isActive });
             index++;
         });
-        console.log("Reset success!");
+        console.log("Randomizing success!");
     }).catch(function (error) {
-        console.error("Error resetting database: ", error);
+        console.error("Error writing to database: ", error);
     });
 }
 
-export default resetDatabase;
+export default randomizeCharacters;
