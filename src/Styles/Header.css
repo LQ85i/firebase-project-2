@@ -5,3 +5,17 @@
  align-items: center;
  padding: 10px;
 }
+
+.right button.home {
+    min-width: 40px;
+    min-height: 40px;
+    border: none;
+    background-color: transparent;
+    background-image: url("../Images/icon_menu.svg");
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+}
+
+.right button.home:hover {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.39));
+}

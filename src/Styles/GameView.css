@@ -1,11 +1,13 @@
-#main-view {
+#game-view {
     background-color: #DCE5DB;
+
+    min-height: 620px;
     max-height: 1080px;
     max-width: 100vw;
     position: relative;
 }
 
-#main-view .header {
+#game-view .header {
     min-height: 70px;
     display: flex;
     align-self: center;
@@ -14,24 +16,24 @@
     padding: 10px;
 }
 
-#main-view .header .images {
+#game-view .header .images {
     display: flex;
     margin-left: 20px;
     gap: 10px;
 }
 
-#main-view .header .images img {
+#game-view .header .images img {
     border-radius: 5px;
 }
 
-#main-view .art-container {
+#game-view .art-container {
     overflow: hidden;
     max-height: 620px;
     position:relative;
 }
 
 
-#main-view .art {
+#game-view .art {
     position:relative;
     display: block;
 
@@ -39,7 +41,7 @@
     
 }
 
-#main-view .clicked {
+#game-view .clicked {
     position: absolute;
     border: 3px solid rgb(0, 127, 247);
     border-style: dashed;
@@ -50,13 +52,13 @@
     transition: transform 0.2s, opacity 0.15s, width 0.15s, height 0.15s;
 }
 
-#main-view .clicked.visible {
+#game-view .clicked.visible {
     transform: translate(-52%,-52%) rotate(360deg);
     opacity: 1;
     transition: transform 0.2s, opacity 0.15s, width 0.15s, height 0.15s;
 }
 
-#main-view .clicked-menu {
+#game-view .clicked-menu {
     position: absolute;
     border: 1px solid black;
     box-shadow: 0 0 5px black;
@@ -68,13 +70,13 @@
     transition: opacity 0.2s, width 0s 0.2s, height 0s 0.2s;
 }
 
-#main-view .clicked-menu.visible {
+#game-view .clicked-menu.visible {
     opacity: 1;
     transition: opacity 0.2s;
 }
 
 
-#main-view .clicked-menu .images {
+#game-view .clicked-menu .images {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -82,7 +84,7 @@
     padding: 4px;
 }
 
-#main-view .images .frame {
+#game-view .images .frame {
     border-radius: 5px;
     max-width: 50px;
     max-height: 80px;
@@ -93,7 +95,7 @@
     outline: none;
 }
 
-#main-view .images .frame .icon-check-circle:not(.hidden) {
+#game-view .images .frame .icon-check-circle:not(.hidden) {
     position: absolute;
     top: 25px;
     width: 35px;
@@ -105,22 +107,22 @@
     animation: 0.4s fade-in 0.3s;
 }
 
-#main-view .images .frame .icon-check-circle.hidden {
+#game-view .images .frame .icon-check-circle.hidden {
     top: -25px;
     width: 0;
     opacity: 0;
 }
 
-#main-view .images .frame.found {
+#game-view .images .frame.found {
     outline: 4px solid rgb(21, 180, 0);
     transition: 0.2s 0.2s;
 }
 
-#main-view .clicked-menu .images .frame:not(.found) {
+#game-view .clicked-menu .images .frame:not(.found) {
     transition: transform 0.10s;
 }
 
-#main-view .clicked-menu .images .frame:not(.found):hover {
+#game-view .clicked-menu .images .frame:not(.found):hover {
     border-radius: 2px;
     outline: 2px solid rgb(174, 0, 197);
     box-shadow: 0 0 5px black;
@@ -128,12 +130,12 @@
     z-index: 2;
     transition: transform 0.10s;
 }
-#main-view .clicked-menu .images .frame.found:hover {
+#game-view .clicked-menu .images .frame.found:hover {
     outline: 4px solid rgb(21, 180, 0);
     box-shadow: none;
 }
 
-#main-view .clicked-menu .images .frame:active {
+#game-view .clicked-menu .images .frame:active {
     border: 1px solid #000;
 }
 
