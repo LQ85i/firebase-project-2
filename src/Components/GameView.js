@@ -1,4 +1,4 @@
-import '../Styles/MainView.css';
+import '../Styles/GameView.css';
 import film_rats from '../Images/film-rats-halfsize.jpg'
 import rat1 from '../Images/rat1.png'
 import rat2 from '../Images/rat2.png'
@@ -6,11 +6,10 @@ import rat3 from '../Images/rat3.png'
 import icon_check_circle from '../Images/icon_check_circle.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
-import handleSubmit from '../handles/handlesubmit';
+import handleSubmit from '../handles/handleSubmit';
 import MessageBox from './MessageBox';
 
-const MainView = (props) => {
-
+const GameView = () => {
     const [scale, setScale] = useState(1);
     const [scrollLeft, setScrollLeft] = useState(0);
     const [scrollTop, setScrollTop] = useState(0);
@@ -234,13 +233,78 @@ const MainView = (props) => {
         }
         return top + "px"
     }
+    return (<div id="game-view">
+    <div className="header" onClick={handleClick}>
+        <div className="title">Find these rats:</div>
+        <div className="images">
+            <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
+                <img className='rat1' src={rat1} alt="" />
+                <img
+                    className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                    src={icon_check_circle}
+                    alt=""
+                />
+            </div>
+            <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
+                <img className='rat2' src={rat2} alt="" />
+                <img
+                    className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                    src={icon_check_circle}
+                    alt=""
+                />
+            </div>
+            <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
+                <img className='rat3' src={rat3} alt="" />
+                <img
+                    className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
+                    src={icon_check_circle}
+                    alt=""
+                />
+            </div>
 
-    return (<div id="main-view">
-        <div className="header" onClick={handleClick}>
-            <div className="title">Find these rats:</div>
-            <div className="images">
+        </div>
+    </div>
+    <ScrollContainer
+        className='art-container'
+        hideScrollbars={false}
+        innerRef={scrollContainerRef}
+        onScroll={handleDragScroll}
+        handleClick={handleClick}
+    >
+        <img
+            className='art'
+            src={film_rats}
+            alt="" draggable={false}
+            style={{
+                transformOrigin: "0 0",
+                height: originalHeight * scale
+            }}
+            onWheel={handleScroll}
+            onClick={handleClick}
+        />
+        <div
+            className={showClicked ? "clicked visible" : "clicked"}
+            style={{
+                left: clickedPos[0],
+                top: clickedPos[1],
+                width: (showClicked ? 150 * scale : 0) + "px",
+                height: (showClicked ? 150 * scale : 0) + "px"
+            }}
+            onWheel={handleScroll}
+            onClick={handleClick}
+        />
+        <div
+            className={showClicked ? "clicked-menu visible" : "clicked-menu"}
+            style={{
+                left: getClickMenuLeftPos(),
+                top: getClickMenuTopPos(),
+                width: (showClicked ? 200 : 0) + "px",
+                height: (showClicked ? 100 : 0) + "px",
+            }}
+        >
+            <div className='images'>
                 <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
-                    <img className='rat1' src={rat1} alt="" />
+                    <img className='rat1' src={rat1} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}
@@ -248,7 +312,7 @@ const MainView = (props) => {
                     />
                 </div>
                 <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
-                    <img className='rat2' src={rat2} alt="" />
+                    <img className='rat2' src={rat2} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}
@@ -256,84 +320,18 @@ const MainView = (props) => {
                     />
                 </div>
                 <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
-                    <img className='rat3' src={rat3} alt="" />
+                    <img className='rat3' src={rat3} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}
                         alt=""
                     />
                 </div>
-
             </div>
         </div>
-        <ScrollContainer
-            className='art-container'
-            hideScrollbars={false}
-            innerRef={scrollContainerRef}
-            onScroll={handleDragScroll}
-            handleClick={handleClick}
-        >
-            <img
-                className='art'
-                src={film_rats}
-                alt="" draggable={false}
-                style={{
-                    transformOrigin: "0 0",
-                    height: originalHeight * scale
-                }}
-                onWheel={handleScroll}
-                onClick={handleClick}
-            />
-            <div
-                className={showClicked ? "clicked visible" : "clicked"}
-                style={{
-                    left: clickedPos[0],
-                    top: clickedPos[1],
-                    width: (showClicked ? 150 * scale : 0) + "px",
-                    height: (showClicked ? 150 * scale : 0) + "px"
-                }}
-                onWheel={handleScroll}
-                onClick={handleClick}
-            />
-            <div
-                className={showClicked ? "clicked-menu visible" : "clicked-menu"}
-                style={{
-                    left: getClickMenuLeftPos(),
-                    top: getClickMenuTopPos(),
-                    width: (showClicked ? 200 : 0) + "px",
-                    height: (showClicked ? 100 : 0) + "px",
-                }}
-            >
-                <div className='images'>
-                    <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
-                        <img className='rat1' src={rat1} alt="" onClick={handleClick} />
-                        <img
-                            className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
-                            src={icon_check_circle}
-                            alt=""
-                        />
-                    </div>
-                    <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
-                        <img className='rat2' src={rat2} alt="" onClick={handleClick} />
-                        <img
-                            className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
-                            src={icon_check_circle}
-                            alt=""
-                        />
-                    </div>
-                    <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
-                        <img className='rat3' src={rat3} alt="" onClick={handleClick} />
-                        <img
-                            className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
-                            src={icon_check_circle}
-                            alt=""
-                        />
-                    </div>
-                </div>
-            </div>
-        </ScrollContainer>
-        {showMsgBox && <MessageBox msgText={msgText} msgType={msgType} msgBoxDuration={msgBoxDuration} />}
-    </div>);
+    </ScrollContainer>
+    {showMsgBox && <MessageBox msgText={msgText} msgType={msgType} msgBoxDuration={msgBoxDuration} />}
+</div>);
 }
-
-export default MainView;
+ 
+export default GameView;
