@@ -3,20 +3,29 @@ import film_rats from '../Images/film-rats-halfsize.jpg'
 import rat1 from '../Images/rat1.png'
 import rat2 from '../Images/rat2.png'
 import rat3 from '../Images/rat3.png'
+import rat4 from '../Images/rat4.png'
+import rat5 from '../Images/rat5.png'
+import rat6 from '../Images/rat6.png'
+import rat7 from '../Images/rat7.png'
+import rat8 from '../Images/rat8.png'
+import rat9 from '../Images/rat9.png'
+import rat10 from '../Images/rat10.png'
 import icon_check_circle from '../Images/icon_check_circle.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
 import handleSubmit from '../handles/handleSubmit';
 import MessageBox from './MessageBox';
+import getActiveCharacters from '../resetDatabase';
 
-const GameView = () => {
+const GameView = (props) => {
+    const {setGameState, characterIDs, setCharacterIDs, setStopTimer} = props;
+
     const [scale, setScale] = useState(1);
     const [scrollLeft, setScrollLeft] = useState(0);
     const [scrollTop, setScrollTop] = useState(0);
     const [showClicked, setShowClicked] = useState(false);
     const [clickedPos, setClickedPos] = useState([0, 0]);
     const [clickedPosDB, setClickedPosDB] = useState([0, 0]);
-    const [characterIDs, setCharacterIDs] = useState([-1, -1, -1]);
     const [charactersFound, setCharactersFound] = useState({});
     const [artContainerSize, setArtContainerSize] = useState([0, 0]);
 
@@ -27,6 +36,8 @@ const GameView = () => {
     const msgBoxDuration = 5000;
 
     const scrollContainerRef = useRef(null);
+
+    const rats = [rat1,rat2,rat3,rat4,rat5,rat6,rat7,rat8,rat9,rat10]
 
     const scaleMin = 0.2;
     const scaleMax = 3.01;
@@ -72,12 +83,17 @@ const GameView = () => {
             setShowMsgBox(true);
         }
         else if (sum === 3) {
-            setMsgText("Congratulations, you found all three rats!");
-            setMsgType("all-characters-found");
+            setMsgText("You found all three rats!");
+            setMsgType("character-found");
             setShowMsgBox(true);
+            setStopTimer(true);
+            setTimeout(() => {
+                setGameState(2);
+            }, 3000);
+            
         }
 
-    }, [charactersFound, characterIDs]);
+    }, [charactersFound, characterIDs, setGameState, setStopTimer]);
 
     useEffect(() => {
         if (msgCharNotFound) {
@@ -91,8 +107,7 @@ const GameView = () => {
     const fetchCharacterIDs = () => {
         // TODO
         // request firebase for IDs
-
-        const IDs = [0, 1, 2];
+        const IDs = getActiveCharacters();
         setCharacterIDs(IDs);
 
         let obj = {};
@@ -238,7 +253,7 @@ const GameView = () => {
         <div className="title">Find these rats:</div>
         <div className="images">
             <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
-                <img className='rat1' src={rat1} alt="" />
+                <img className='rat1' src={rats[characterIDs[0]]} alt="" />
                 <img
                     className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
                     src={icon_check_circle}
@@ -246,7 +261,7 @@ const GameView = () => {
                 />
             </div>
             <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
-                <img className='rat2' src={rat2} alt="" />
+                <img className='rat2' src={rats[characterIDs[1]]} alt="" />
                 <img
                     className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
                     src={icon_check_circle}
@@ -254,7 +269,7 @@ const GameView = () => {
                 />
             </div>
             <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
-                <img className='rat3' src={rat3} alt="" />
+                <img className='rat3' src={rats[characterIDs[2]]} alt="" />
                 <img
                     className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
                     src={icon_check_circle}
@@ -304,7 +319,7 @@ const GameView = () => {
         >
             <div className='images'>
                 <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
-                    <img className='rat1' src={rat1} alt="" onClick={handleClick} />
+                    <img className='rat' src={rats[characterIDs[0]]} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[0]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}
@@ -312,7 +327,7 @@ const GameView = () => {
                     />
                 </div>
                 <div className={charactersFound[characterIDs[1]] ? "frame found" : "frame"}>
-                    <img className='rat2' src={rat2} alt="" onClick={handleClick} />
+                    <img className='rat' src={rats[characterIDs[1]]} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[1]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}
@@ -320,7 +335,7 @@ const GameView = () => {
                     />
                 </div>
                 <div className={charactersFound[characterIDs[2]] ? "frame found" : "frame"}>
-                    <img className='rat3' src={rat3} alt="" onClick={handleClick} />
+                    <img className='rat' src={rats[characterIDs[2]]} alt="" onClick={handleClick} />
                     <img
                         className={charactersFound[characterIDs[2]] ? "icon-check-circle" : "icon-check-circle hidden"}
                         src={icon_check_circle}

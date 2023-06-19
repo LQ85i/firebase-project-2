@@ -1,19 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
-  const [startTime] = useState(Date.now());
+const Timer = (props) => {
+
+  const { gameState, setEndTime, stopTimer } = props
+
+  const [startTime, setStartTime] = useState(Date.now());
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      setCurrentTime(elapsed);
-    }, 10);
+    if(stopTimer){
+      setEndTime(currentTime);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stopTimer]);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [startTime]);
+  useEffect(() => {
+    if (gameState === 1) {
+      setStartTime(Date.now());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState]);
+
+  useEffect(() => {
+    if (gameState === 1 && !stopTimer) {
+      const timer = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        setCurrentTime(elapsed);
+      }, 10);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }
+
+  }, [startTime, gameState, stopTimer]);
 
   const formatTime = (time) => {
     const milliseconds = time % 1000;
