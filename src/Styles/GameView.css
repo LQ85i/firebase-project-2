@@ -95,6 +95,11 @@
     outline: none;
 }
 
+#game-view .images .frame img {
+    max-width: 50px;
+    max-height: 80px;
+}
+
 #game-view .images .frame .icon-check-circle:not(.hidden) {
     position: absolute;
     top: 25px;
@@ -104,7 +109,8 @@
     drop-shadow(0 0 2px rgba(0, 0, 0, 0.637));
     opacity: 1;
     transition: opacity 0.15s 0.3s;
-    animation: 0.4s fade-in 0.3s;
+    animation: 0.4s shrink-grow 0.3s;
+    transform-origin: center;
 }
 
 #game-view .images .frame .icon-check-circle.hidden {
@@ -124,7 +130,7 @@
 
 #game-view .clicked-menu .images .frame:not(.found):hover {
     border-radius: 2px;
-    outline: 2px solid rgb(174, 0, 197);
+    outline: 2px solid rgba(20, 243, 0, 0.966);
     box-shadow: 0 0 5px black;
     transform: scale(120%);
     z-index: 2;
@@ -139,14 +145,14 @@
     border: 1px solid #000;
 }
 
-@keyframes fade-in {
+@keyframes shrink-grow {
     0% {
-        transform: scale(250%);
+        transform: scale(2.5);
     }
     50% {
-        transform: scale(80%);
+        transform: scale(0.8);
     }
     100% {
-        transform: scale(100%);
+        transform: scale(1);
     }
   }

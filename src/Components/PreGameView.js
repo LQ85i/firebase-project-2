@@ -28,7 +28,7 @@ const PreGameView = (props) => {
                 <ol>
                     <li>Find the characters shown at the top by clicking in the artwork</li>
                     <li>There is a timer when you begin, show off your time in the leaderboard!</li>
-                    <li>You can zoom with scrollwheel or finger gesture and move the picture around by dragging it</li>
+                    <li>You can zoom with scrollwheel and move the picture around by dragging it</li>
                     <li>The characters are randomized when you play again</li>
                 </ol>
             </div>

@@ -1,3 +1,5 @@
+
+
 #pre-game-view {
     background-color: #DCE5DB;
     min-height: 620px;
@@ -38,7 +40,7 @@
     font-weight: 500;
 }
 
-.info-window {
+#pre-game-view .info-window {
     border: 1px solid #797979;
     display: flex;
     flex-direction: column;
@@ -49,13 +51,16 @@
     justify-content: center;
     position: absolute;
     top: 140px;
-    left: calc(50%);
-    transform: translate(-50%, 0);
+    left: 50%;
     background-color: #D9EDD2;
     border-radius: 10px;
     box-shadow: 0 0 5px black;
     z-index: 2;
     padding: 20px;
+    transform: translate(-50%, 0) scale(0.1);
+    opacity: 0;
+    animation: 0.4s grow-shrink 0.3s forwards;
+    transform-origin: left;
 }
 
 .info-window .title-1 {
@@ -94,3 +99,18 @@
 #pre-game-view .art {
     filter: blur(10px);
 }
+
+@keyframes grow-shrink {
+    0% {
+        opacity: 1;
+        transform: scale(0.8) translate(-50%, 0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) translate(-50%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, 0);
+    }
+  }
