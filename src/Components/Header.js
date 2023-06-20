@@ -3,7 +3,7 @@ import Timer from './Timer';
 
 const Header = (props) => {
 
-    const { gameState, setGameState, setEndTime, stopTimer, setStopTimer } = props;
+    const { gameState, setGameState, setEndTime, stopTimer } = props;
 
     const handleClick = (e) => {
         if (e.currentTarget.classname === "home") {

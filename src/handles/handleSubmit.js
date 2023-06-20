@@ -1,32 +1,28 @@
-import { addDoc, collection, deleteDoc } from "@firebase/firestore"
+import { doc, updateDoc } from "@firebase/firestore"
 import { firestore } from "../firebase_setup/firebase"
 
 
 const handleSubmit = (id, pos, charactersFound, setCharactersFound, setMsgCharNotFound) => {
 
-    let collectionRef = collection(firestore, "click_coordinates") // Firebase creates this automatically
+    let docRef = doc(firestore, "click_coordinates", "default")
 
     let data = {
         id: id,
         x: pos[0],
         y: pos[1]
     }
-    try {
-        addDoc(collectionRef, data).then((docRef) => {
-            // character found
-            let obj = { ...charactersFound };
-            obj[id] = true;
-            setCharactersFound(obj)
-            return deleteDoc(docRef)
+
+    updateDoc(docRef, data).then(() => {
+        let obj = { ...charactersFound };
+        obj[id] = true;
+        setCharactersFound(obj)
+    })
+        .catch(error => {
+            if (error.code === "permission-denied") {
+                setMsgCharNotFound(true);
+            }
         })
-            .catch(error => {
-                if (error.code === "permission-denied") {
-                    setMsgCharNotFound(true);
-                }
-            })
-    } catch (err) {
-        console.error(err);
-    }
+
 }
 
 export default handleSubmit
