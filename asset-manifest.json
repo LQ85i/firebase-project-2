@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/firebase-project-2/static/css/main.7e092c1a.css",
+    "main.js": "/firebase-project-2/static/js/main.7ba18a44.js",
+    "static/media/film-rats-halfsize.jpg": "/firebase-project-2/static/media/film-rats-halfsize.0dc3fbb38fa446f5622d.jpg",
+    "static/media/rat4.png": "/firebase-project-2/static/media/rat4.c875d4c6385b619cb96a.png",
+    "static/media/rat1.png": "/firebase-project-2/static/media/rat1.298e5c4ac8df0f585ddc.png",
+    "static/media/rat5.png": "/firebase-project-2/static/media/rat5.4a1fddc7424ec0ef9c3d.png",
+    "static/media/rat8.png": "/firebase-project-2/static/media/rat8.48650f848863b5e643c6.png",
+    "static/media/rat7.png": "/firebase-project-2/static/media/rat7.79efc18c5aed156a7b85.png",
+    "static/media/rat2.png": "/firebase-project-2/static/media/rat2.36778fa7a94a4842239b.png",
+    "static/media/rat6.png": "/firebase-project-2/static/media/rat6.ee8952f7c4c9698257d9.png",
+    "static/media/rat9.png": "/firebase-project-2/static/media/rat9.a3ed0aef554b6c63ae23.png",
+    "static/media/rat3.png": "/firebase-project-2/static/media/rat3.8367c1e444fa977049f3.png",
+    "static/media/rat10.png": "/firebase-project-2/static/media/rat10.2fc43aa959d5912f0446.png",
+    "index.html": "/firebase-project-2/index.html",
+    "static/media/icon_check_circle.svg": "/firebase-project-2/static/media/icon_check_circle.d2904c6c8ec45fa6188fc1bc71c2fb0f.svg",
+    "static/media/icon_check.svg": "/firebase-project-2/static/media/icon_check.83ba0203b6adbb921420db9edd635a02.svg",
+    "main.7e092c1a.css.map": "/firebase-project-2/static/css/main.7e092c1a.css.map",
+    "main.7ba18a44.js.map": "/firebase-project-2/static/js/main.7ba18a44.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7e092c1a.css",
+    "static/js/main.7ba18a44.js"
+  ]
+}
