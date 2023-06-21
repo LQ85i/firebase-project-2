@@ -24,14 +24,14 @@ const PreGameView = (props) => {
             </div>
         </div>
         <div className='info-window'>
-            <div className='title-1'>Picture Tag Game</div>
+            <div className='title-1'>Picture Tag: Rats</div>
             <div className='title-2'>Instructions:</div>
             <div className='content'>
                 <ol>
-                    <li>Find the characters shown at the top by clicking them in the artwork.</li>
+                    <li>Find the rats shown at the top by clicking them in the artwork.</li>
                     <li>There is a timer when you begin, show off your time in the leaderboard!</li>
                     <li>You can zoom with scrollwheel and move the picture around by dragging it.</li>
-                    <li>The characters are randomized every time you play.</li>
+                    <li>The rats are randomized every time you play.</li>
                 </ol>
             </div>
             <div className='button-container'>

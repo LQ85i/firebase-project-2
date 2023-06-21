@@ -7,6 +7,20 @@
  padding: 10px;
 }
 
+#header .left {
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(118, 255, 248);
+    text-shadow:
+        0.11em 0 black,
+        0 0.11em black,
+        -0.11em 0 black,
+        0 -0.11em black,
+        1.5px 1.5px 0px rgb(0, 0, 0);
+    letter-spacing: 0.03em;
+}
+
 #header .center {
     float: center;
     display: flex;
@@ -14,8 +28,23 @@
     align-items: center;
 }
 #header .timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     opacity: 1;
     transition: opacity 0.1s;
+
+
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    text-shadow:
+        0.09em 0 black,
+        0 0.09em black,
+        -0.09em 0 black,
+        0 -0.09em black,
+        1.5px 1.5px 0px rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 #header .timer-container.hidden {
     opacity: 0;
@@ -25,7 +54,6 @@
 #header .right button.menu {
     float: right;
     font-size: 16px;
-
     outline: 1px solid rgba(0, 0, 0, 0.507);
     font-weight: 900;
     padding: 3px 10px;
@@ -34,15 +62,31 @@
     color: rgb(36, 36, 36);
 }
 
+#header .right button.menu:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+#header .right button.menu:hover {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+
 
 @media screen and (max-width: 480px) {
     #header {
         grid-template-columns: 100px 1fr 100px;
     }
+    #header .timer-container {
+        font-size: 16px;
+    }
 }
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 350px) {
     #header {
         font-size: 13px;
         grid-template-columns: 70px 1fr 70px;
+    }
+    #header .left { 
+        font-size: 12px;
+    }
+    #header .timer-container {
+        font-size: 14px;
     }
 }

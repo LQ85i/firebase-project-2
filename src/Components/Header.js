@@ -48,7 +48,7 @@ const Header = (props) => {
     }
 
     return (<div id="header">
-        <div className="left">Picture Tag Game</div>
+        <div className="left">Picture Tag: Rats</div>
         <div className="center">
             {getCenter()}
         </div>

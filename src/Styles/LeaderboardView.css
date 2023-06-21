@@ -1,9 +1,11 @@
 #leaderboard-view {
     background-color: #DCE5DB;
     min-height: 620px;
-    max-height: 1080px;
+    max-height: calc(100vh - 90px);
     max-width: 100vw;
     position: relative;
+    display: grid;
+    grid-template-rows: minmax(720px, 1fr)
 }
 #leaderboard-view .header {
     min-height: 100px;
@@ -12,7 +14,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 #leaderboard-view .info-window {
     border: 1px solid #797979;
@@ -39,10 +40,18 @@
 }
 
 #leaderboard-view .info-window .title-1 {
-    font-style: italic;
     font-size: 20px;
-    font-weight: 300;
     margin-bottom: 20px;
+    padding: 5px;
+    font-weight: 600;
+    color: rgb(118, 255, 248);
+    text-shadow:
+        0.11em 0 black,
+        0 0.11em black,
+        -0.11em 0 black,
+        0 -0.11em black,
+        1.5px 1.5px 0px rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 
 #leaderboard-view .info-window .title-2 {
@@ -64,6 +73,12 @@
     background-color: #C2EFC1;
     color: rgb(36, 36, 36);
 }
+#leaderboard-view .info-window button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+#leaderboard-view .info-window button:hover {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
 
 
 
@@ -76,7 +91,6 @@
 }
 
 #leaderboard-view .art-container {
-    max-height: 720px;
     z-index: 1;
     overflow: hidden;
 }
@@ -162,33 +176,33 @@
     border-bottom: none;
 }
 
-@media screen and (max-width: 350px) {
-    #leaderboard-view .table-header {
-        font-size: 12px;
-    }
 
-    #leaderboard-view .table-container .table-cell{
-        font-size: 12px;
-    }
-}
 @media screen and (max-width: 480px) {
-    #leaderboard-view .header .frame { 
-        max-width: 35px;
-        min-width: 35px;
-        max-height: 56px;
-        min-height: 56px;
-    }
-    #leaderboard-view .info-window {
+        #leaderboard-view .info-window {
         padding: 15px 5px;
         font-size: 14px;
     }
     #leaderboard-view .info-window li {
         margin-top: 10px;
     }
+    #leaderboard-view .info-window .title-1 {
+        font-size: 16px;
+    }
     #leaderboard-view .table-container .table {
         font-size: 13px;
     }
     
+}
+@media screen and (max-width: 350px) {
+    #leaderboard-view .table-header {
+        font-size: 12px;
+    }
+    #leaderboard-view .info-window .title-1 {
+        font-size: 14px;
+    }
+    #leaderboard-view .table-container .table-cell{
+        font-size: 12px;
+    }
 }
 
 @keyframes grow-shrink {

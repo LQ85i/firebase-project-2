@@ -1,9 +1,11 @@
 #pre-game-view {
     background-color: #DCE5DB;
     min-height: 620px;
-    max-height: 1080px;
+    max-height: calc(100vh - 90px);
     max-width: 100vw;
     position: relative;
+    display: grid;
+    grid-template-rows: 100px minmax(620px, 1fr)
 }
 #pre-game-view .header {
     min-height: 70px;
@@ -12,6 +14,15 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+        
+}
+
+#pre-game-view .header .title {
+
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 
 #pre-game-view .header .frames {
@@ -36,6 +47,7 @@
     font-size: 45px;
     align-items: center;
     font-weight: 500;
+
 }
 
 #pre-game-view .info-window {
@@ -62,10 +74,18 @@
 }
 
 #pre-game-view .info-window .title-1 {
-    font-style: italic;
     font-size: 20px;
-    font-weight: 300;
     margin-bottom: 20px;
+    padding: 5px;
+    font-weight: 600;
+    color: rgb(118, 255, 248);
+    text-shadow:
+        0.11em 0 black,
+        0 0.11em black,
+        -0.11em 0 black,
+        0 -0.11em black,
+        1.5px 1.5px 0px rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 
 #pre-game-view .info-window .title-2 {
@@ -78,7 +98,7 @@
     margin-top: 20px;
 }
 
-#pre-game-view .info-window button.start-game {
+#pre-game-view .info-window button {
     margin-top: 20px;
     outline: 1px solid rgba(0, 0, 0, 0.507);
     font-weight: 900;
@@ -88,14 +108,11 @@
     color: rgb(36, 36, 36);
 }
 
-#pre-game-view .info-window button.show-leaderboard {
-    margin-top: 20px;
-    outline: 1px solid rgba(0, 0, 0, 0.507);
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 5px;
-    background-color: #C2EFC1;
-    color: rgb(36, 36, 36);
+#pre-game-view .info-window button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+#pre-game-view .info-window button:hover {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
 }
 
 #pre-game-view .button-container {
@@ -106,7 +123,8 @@
 }
 
 #pre-game-view .art-container {
-    max-height: 620px;
+    min-height: 620px;
+    max-height: 100%;
     z-index: 1;
     overflow: hidden;
 }

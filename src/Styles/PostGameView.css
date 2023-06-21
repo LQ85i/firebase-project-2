@@ -1,10 +1,11 @@
 #post-game-view {
     background-color: #DCE5DB;
-
     min-height: 620px;
-    max-height: 1080px;
+    max-height: calc(100vh - 90px);
     max-width: 100vw;
     position: relative;
+    display: grid;
+    grid-template-rows: 100px minmax(620px, 1fr)
 }
 
 #post-game-view .header {
@@ -16,14 +17,22 @@
     padding: 10px;
 }
 
+#post-game-view .header .title {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.03em;
+}
+
 #post-game-view .header .images {
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     gap: 10px;
 }
 
 #post-game-view .header .images img {
     border-radius: 5px;
+    min-height: 80px;
 }
 
 #post-game-view .images .frame {
@@ -44,7 +53,6 @@
 
 #post-game-view .images .frame .icon-check-circle:not(.hidden) {
     position: absolute;
-    top: 25px;
     width: 35px;
     filter: invert(48%) sepia(89%) saturate(1909%) hue-rotate(86deg) brightness(128%) contrast(106%)
     drop-shadow(0 0 2px rgba(0, 0, 0, 0.637))
@@ -54,7 +62,6 @@
 #post-game-view .images .frame.found {
     outline: 4px solid rgb(21, 180, 0);
     transition: 0.2s 0.2s;
-
 }
 #post-game-view .info-window {
     border: 1px solid #797979;
@@ -80,11 +87,18 @@
 }
 
 #post-game-view .info-window .title-1 {
-    font-style: italic;
-    text-align: center;
     font-size: 20px;
-    font-weight: 300;
     margin-bottom: 20px;
+    padding: 5px;
+    font-weight: 600;
+    color: rgb(118, 255, 248);
+    text-shadow:
+        0.11em 0 black,
+        0 0.11em black,
+        -0.11em 0 black,
+        0 -0.11em black,
+        1.5px 1.5px 0px rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 
 #post-game-view .info-window .title-2 {
@@ -104,6 +118,14 @@
     border-radius: 5px;
     background-color: #C2EFC1;
     color: rgb(36, 36, 36);
+}
+
+#post-game-view button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+
+#post-game-view button:hover {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
 }
 
 #post-game-view button.submit {

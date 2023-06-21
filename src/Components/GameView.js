@@ -15,7 +15,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
 import checkForCharacter from '../database-functions/checkForCharacter';
 import MessageBox from './MessageBox';
-import getActiveCharacters from '../resetDatabase';
+import getActiveCharacters from '../getActiveCharacters';
 
 const GameView = (props) => {
     const { setGameState, characterIDs, setCharacterIDs, setStopTimer } = props;
@@ -212,14 +212,24 @@ const GameView = (props) => {
     }
 
     const getClickMenuLeftPos = () => {
-        //const leftEdgeX = scrollLeft;
+        const leftEdgeX = scrollLeft;
         const rightEdgeX = scrollLeft + artContainerSize[0];
-        //const distanceLeft = clickedPos[0] - leftEdgeX;
+        const distanceLeft = clickedPos[0] - leftEdgeX;
         const distanceRight = rightEdgeX - clickedPos[0];
         const circleRadius = 75 * scale;
         const menuWidth = 220;
+        const mobileWidth = 480;
         let left = 0;
-        if (distanceRight < circleRadius + menuWidth) {
+        if (artContainerSize[0] < mobileWidth && distanceRight < 75+menuWidth/4){
+            // mobile, close to right
+            left = clickedPos[0] - 75 - menuWidth/1.6;
+        } else if (artContainerSize[0] < mobileWidth && distanceLeft < 75+menuWidth/4){
+            // mobile, close to left
+            left = clickedPos[0] + 75 - menuWidth/3;
+        } else if (artContainerSize[0] < mobileWidth){
+            // mobile, center
+            left = clickedPos[0] - 75 - menuWidth/5;
+        } else if (distanceRight < circleRadius + menuWidth) {
             // close to right
             left = clickedPos[0] - menuWidth - circleRadius;
         } else {
@@ -235,13 +245,20 @@ const GameView = (props) => {
         const distanceTop = clickedPos[1] - topEdgeX;
         const distanceBottom = bottomEdgeX - clickedPos[1];
         const menuHeight = 70;
+        const mobileWidth = 480;
         let top = 0;
-        if (distanceBottom < menuHeight) {
+        if (artContainerSize[0] < mobileWidth && distanceTop < 75+menuHeight){
+            // mobile, close to top
+            top = clickedPos[1] + 75 + menuHeight/5;
+        } else if (artContainerSize[0] < mobileWidth){
+            // mobile, elsewhere
+            top = clickedPos[1] - 75 - menuHeight/3;
+        } else if (distanceBottom < menuHeight) {
             // close to bottom
-            top = clickedPos[1] - menuHeight * scale;
+            top = clickedPos[1] - menuHeight;
         } else if (distanceTop < menuHeight) {
             // close to top
-            top = clickedPos[1] + menuHeight * scale;
+            top = clickedPos[1] + menuHeight;
         } else {
             // between
             top = clickedPos[1];

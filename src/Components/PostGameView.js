@@ -62,9 +62,9 @@ const PostGameView = (props) => {
             return <>
                 <form className="form-submit-record" onSubmit={handleSubmit}>
                     <label className="input-title" htmlFor="name-field" >Your name:</label>
-                    <input name="name" type="text" className="name-field" pattern="[a-zA-Z ]{1,10}" title="Please enter only upper or lower case letters (maximum 10 characters)" id="name-field" required />
-                    <button className="submit">Submit time!</button>
-                    <div className="optional">(optional)</div>
+                    <input name="name" type="text" className="name-field" pattern="[a-zA-Z ]{1,10}" title="Please enter only upper or lower case letters (maximum 10 characters)" id="name-field" placeholder="Your name" required />
+                    <button className="submit">Submit Time!</button>
+                    <div className="optional">(Optional)</div>
                 </form>
             </>
         } else {
