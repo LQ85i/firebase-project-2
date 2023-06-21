@@ -5,3 +5,24 @@
     justify-content: space-between;
     background-color: #DCE5DB;
 }
+
+#App button {
+    border-color: lightgrey;
+}
+
+#App button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+#App button:hover {
+    outline: 2px solid rgba(0, 0, 0, 0.555);
+}
+
+#App button {
+    outline: 1.5px solid rgba(0, 0, 0, 0.507);
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: #C2EFC1;
+    color: rgb(36, 36, 36);
+    font-size: 0.9em;
+}
