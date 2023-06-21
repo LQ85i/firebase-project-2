@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/firebase-project-2/static/css/main.2b729cfc.css",
+    "main.css": "/firebase-project-2/static/css/main.96e399be.css",
     "main.js": "/firebase-project-2/static/js/main.7ba18a44.js",
     "static/media/film-rats-halfsize.jpg": "/firebase-project-2/static/media/film-rats-halfsize.0dc3fbb38fa446f5622d.jpg",
     "static/media/rat4.png": "/firebase-project-2/static/media/rat4.c875d4c6385b619cb96a.png",
@@ -16,11 +16,11 @@
     "index.html": "/firebase-project-2/index.html",
     "static/media/icon_check_circle.svg": "/firebase-project-2/static/media/icon_check_circle.d2904c6c8ec45fa6188fc1bc71c2fb0f.svg",
     "static/media/icon_check.svg": "/firebase-project-2/static/media/icon_check.83ba0203b6adbb921420db9edd635a02.svg",
-    "main.2b729cfc.css.map": "/firebase-project-2/static/css/main.2b729cfc.css.map",
+    "main.96e399be.css.map": "/firebase-project-2/static/css/main.96e399be.css.map",
     "main.7ba18a44.js.map": "/firebase-project-2/static/js/main.7ba18a44.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b729cfc.css",
+    "static/css/main.96e399be.css",
     "static/js/main.7ba18a44.js"
   ]
 }
