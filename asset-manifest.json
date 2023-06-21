@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/firebase-project-2/static/css/main.bb589c96.css",
-    "main.js": "/firebase-project-2/static/js/main.ed2cb71f.js",
+    "main.css": "/firebase-project-2/static/css/main.42ea865c.css",
+    "main.js": "/firebase-project-2/static/js/main.a0fcc7b6.js",
     "static/media/film-rats-halfsize.jpg": "/firebase-project-2/static/media/film-rats-halfsize.0dc3fbb38fa446f5622d.jpg",
     "static/media/rat4.png": "/firebase-project-2/static/media/rat4.c875d4c6385b619cb96a.png",
     "static/media/rat1.png": "/firebase-project-2/static/media/rat1.298e5c4ac8df0f585ddc.png",
@@ -18,11 +18,11 @@
     "static/media/icon_check_circle.svg": "/firebase-project-2/static/media/icon_check_circle.d2904c6c8ec45fa6188fc1bc71c2fb0f.svg",
     "static/media/icon_zoom_out.svg": "/firebase-project-2/static/media/icon_zoom_out.2879cd82957c6dddde3590b3f75a7faa.svg",
     "static/media/icon_check.svg": "/firebase-project-2/static/media/icon_check.83ba0203b6adbb921420db9edd635a02.svg",
-    "main.bb589c96.css.map": "/firebase-project-2/static/css/main.bb589c96.css.map",
-    "main.ed2cb71f.js.map": "/firebase-project-2/static/js/main.ed2cb71f.js.map"
+    "main.42ea865c.css.map": "/firebase-project-2/static/css/main.42ea865c.css.map",
+    "main.a0fcc7b6.js.map": "/firebase-project-2/static/js/main.a0fcc7b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb589c96.css",
-    "static/js/main.ed2cb71f.js"
+    "static/css/main.42ea865c.css",
+    "static/js/main.a0fcc7b6.js"
   ]
 }
