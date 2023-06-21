@@ -49,7 +49,7 @@ const LeaderboardView = (props) => {
         //add data to rows
         for (let i = 0; i < data.length; i++) {
             const submission = data[i];
-            const rank = i;
+            const rank = i+1;
             const name = submission.name;
             const time = formatTime(submission.time);
             const date = new Date(submission.date).toLocaleString('en-GB', options).replace(/\//g, '.');
