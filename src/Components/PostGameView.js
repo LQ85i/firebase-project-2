@@ -12,7 +12,7 @@ import rat9 from '../Images/rat9.png'
 import rat10 from '../Images/rat10.png'
 import icon_check_circle from '../Images/icon_check_circle.svg'
 import icon_check from '../Images/icon_check.svg'
-import submitTime from "../database-functions/submitTime"
+import submitTime from "../database_functions/submitTime"
 import { useState } from "react"
 
 const PostGameView = (props) => {
