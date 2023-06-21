@@ -11,6 +11,8 @@ import rat8 from '../Images/rat8.png'
 import rat9 from '../Images/rat9.png'
 import rat10 from '../Images/rat10.png'
 import icon_check_circle from '../Images/icon_check_circle.svg'
+import icon_zoom_in from '../Images/icon_zoom_in.svg'
+import icon_zoom_out from '../Images/icon_zoom_out.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
 import checkForCharacter from '../database_functions/checkForCharacter';
@@ -33,12 +35,13 @@ const GameView = (props) => {
     const [showMsgBox, setShowMsgBox] = useState(false);
     const [msgText, setMsgText] = useState("");
     const [msgType, setMsgType] = useState("");
-    const msgBoxDuration = 5000;
+
 
     const scrollContainerRef = useRef(null);
 
     const rats = [rat1, rat2, rat3, rat4, rat5, rat6, rat7, rat8, rat9, rat10]
 
+    const msgBoxDuration = 5000;
     const scaleMin = 0.2;
     const scaleMax = 3.01;
     const originalHeight = 3100;
@@ -50,13 +53,14 @@ const GameView = (props) => {
     }, [scrollLeft, scrollTop, scale]);
 
     useEffect(() => {
-        const container = scrollContainerRef.current;
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
+        const containerElement = scrollContainerRef.current;
+        const containerWidth = containerElement.offsetWidth;
+        const containerHeight = containerElement.offsetHeight;
         setArtContainerSize([containerWidth, containerHeight]);
         fetchCharacterIDs();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
     useEffect(() => {
         if (showMsgBox) {
@@ -118,23 +122,28 @@ const GameView = (props) => {
     }
 
     const handleScroll = (e) => {
-
+        const delta = -e.deltaY;
         const factor = 0.2;
-        const delta = -e.deltaY / 120;
-        let newScale = scale + delta * factor;
+        const amount = delta / 120;
+        let newScale = scale + amount * factor;
+        const rect = e.target.parentNode.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        zoomImage(newScale, mouseX, mouseY);
+    }
+
+    const zoomImage = (newScale, x, y) => {
+        // changes the image size and position to simulate zooming
 
         if (newScale < scaleMin) { return }
         if (newScale > scaleMax) { return }
-
 
         setScale(newScale);
 
         const container = scrollContainerRef.current;
         const oldScrollLeft = container.scrollLeft;
         const oldScrollTop = container.scrollTop;
-        const rect = e.target.parentNode.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
         const imageWidth = container.scrollWidth;
@@ -145,8 +154,8 @@ const GameView = (props) => {
 
         const scaleRatio = newScale / scale;
 
-        const newScrollLeft = scaleRatio * (oldScrollLeft + mouseX) - mouseX;
-        const newScrollTop = scaleRatio * (oldScrollTop + mouseY) - mouseY;
+        const newScrollLeft = scaleRatio * (oldScrollLeft + x) - x;
+        const newScrollTop = scaleRatio * (oldScrollTop + y) - y;
 
         const maxScrollLeft = imageWidth * scaleRatio - containerWidth;
         const maxScrollTop = imageHeight * scaleRatio - containerHeight;
@@ -185,6 +194,26 @@ const GameView = (props) => {
             setShowMsgBox(false);
             checkIfCharacterFound(characterIDs[index]);
             setShowClicked(false);
+        } else if (e.currentTarget.className === "zoom-in") {
+            let newScale = scale + 0.3;
+            const container = scrollContainerRef.current;
+            const rect = container.getBoundingClientRect();
+            const x = (rect.right - rect.left) / 2;
+            const y = (rect.bottom - rect.top) / 2;
+            if(newScale > scaleMax) {
+                newScale = scaleMax;
+            }
+            zoomImage(newScale, x, y);
+        } else if (e.currentTarget.className === "zoom-out") {
+            let newScale = scale - 0.3;
+            const container = scrollContainerRef.current;
+            const rect = container.getBoundingClientRect();
+            const x = (rect.right - rect.left) / 2;
+            const y = (rect.bottom - rect.top) / 2;
+            if(newScale < scaleMin) {
+                newScale = scaleMin;
+            }
+            zoomImage(newScale, x, y);
         }
         else {
             setShowClicked(false);
@@ -220,15 +249,15 @@ const GameView = (props) => {
         const menuWidth = 220;
         const mobileWidth = 480;
         let left = 0;
-        if (artContainerSize[0] < mobileWidth && distanceRight < 75+menuWidth/4){
+        if (artContainerSize[0] < mobileWidth && distanceRight < 75 + menuWidth / 4) {
             // mobile, close to right
-            left = clickedPos[0] - 75 - menuWidth/1.6;
-        } else if (artContainerSize[0] < mobileWidth && distanceLeft < 75+menuWidth/4){
+            left = clickedPos[0] - 75 - menuWidth / 1.6;
+        } else if (artContainerSize[0] < mobileWidth && distanceLeft < 75 + menuWidth / 4) {
             // mobile, close to left
-            left = clickedPos[0] + 75 - menuWidth/3;
-        } else if (artContainerSize[0] < mobileWidth){
+            left = clickedPos[0] + 75 - menuWidth / 3;
+        } else if (artContainerSize[0] < mobileWidth) {
             // mobile, center
-            left = clickedPos[0] - 75 - menuWidth/5;
+            left = clickedPos[0] - 75 - menuWidth / 5;
         } else if (distanceRight < circleRadius + menuWidth) {
             // close to right
             left = clickedPos[0] - menuWidth - circleRadius;
@@ -247,12 +276,12 @@ const GameView = (props) => {
         const menuHeight = 70;
         const mobileWidth = 480;
         let top = 0;
-        if (artContainerSize[0] < mobileWidth && distanceTop < 75+menuHeight){
+        if (artContainerSize[0] < mobileWidth && distanceTop < 75 + menuHeight) {
             // mobile, close to top
-            top = clickedPos[1] + 75 + menuHeight/5;
-        } else if (artContainerSize[0] < mobileWidth){
+            top = clickedPos[1] + 75 + menuHeight / 5;
+        } else if (artContainerSize[0] < mobileWidth) {
             // mobile, elsewhere
-            top = clickedPos[1] - 75 - menuHeight/3;
+            top = clickedPos[1] - 75 - menuHeight / 3;
         } else if (distanceBottom < menuHeight) {
             // close to bottom
             top = clickedPos[1] - menuHeight;
@@ -269,6 +298,7 @@ const GameView = (props) => {
         <div className="header" onClick={handleClick}>
             <div className="title">Find these rats:</div>
             <div className="images">
+
                 <div className={charactersFound[characterIDs[0]] ? "frame found" : "frame"}>
                     <img className='rat1' src={rats[characterIDs[0]]} alt="" />
                     <img
@@ -293,7 +323,6 @@ const GameView = (props) => {
                         alt=""
                     />
                 </div>
-
             </div>
         </div>
         <ScrollContainer
@@ -302,6 +331,7 @@ const GameView = (props) => {
             innerRef={scrollContainerRef}
             onScroll={handleDragScroll}
             handleClick={handleClick}
+            nativeMobileScroll={false}
         >
             <img
                 className='art'
@@ -362,6 +392,16 @@ const GameView = (props) => {
                 </div>
             </div>
         </ScrollContainer>
+
+        <div className='zoom-buttons'>
+            <button className='zoom-in' onClick={handleClick}>
+                <img src={icon_zoom_in} alt="" />
+            </button>
+            <button className='zoom-out' onClick={handleClick}>
+                <img src={icon_zoom_out} alt="" />
+            </button>
+
+        </div>
         {showMsgBox && <MessageBox msgText={msgText} msgType={msgType} msgBoxDuration={msgBoxDuration} />}
     </div>);
 }
