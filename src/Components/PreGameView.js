@@ -30,7 +30,7 @@ const PreGameView = (props) => {
                 <ol>
                     <li>Find the rats shown at the top by clicking them in the artwork</li>
                     <li>There is a timer when you begin, show off your time in the leaderboard!</li>
-                    <li>You can zoom with scrollwheel or pressing the zoom buttons</li>
+                    <li>You can zoom with scroll wheel or pressing the zoom buttons</li>
                     <li>You can move the picture around by dragging it</li>
                     <li>The rats are randomized every time you play</li>
                 </ol>

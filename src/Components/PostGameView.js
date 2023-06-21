@@ -64,7 +64,7 @@ const PostGameView = (props) => {
                     <label className="input-title" htmlFor="name-field" >Your name:</label>
                     <input name="name" type="text" className="name-field" pattern="[a-zA-Z ]{1,10}" title="Please enter only upper or lower case letters (maximum 10 characters)" id="name-field" placeholder="Your name" required />
                     <button className="submit">Submit Time!</button>
-                    <div className="optional">(Optional)</div>
+                    <div className="optional">(optional)</div>
                 </form>
             </>
         } else {
