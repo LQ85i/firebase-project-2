@@ -1,6 +1,5 @@
 #game-view {
     background-color: #DCE5DB;
-
     min-height: 620px;
     max-height: 1080px;
     max-width: 100vw;
@@ -18,12 +17,13 @@
 
 #game-view .header .images {
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     gap: 10px;
 }
 
 #game-view .header .images img {
     border-radius: 5px;
+    min-height: 80px;
 }
 
 #game-view .art-container {
@@ -76,6 +76,10 @@
 }
 
 
+#game-view .clicked-menu .images img {
+    min-height: 80px;
+}
+
 #game-view .clicked-menu .images {
     display: flex;
     justify-content: center;
@@ -102,7 +106,6 @@
 
 #game-view .images .frame .icon-check-circle:not(.hidden) {
     position: absolute;
-    top: 25px;
     width: 35px;
     filter: invert(48%) sepia(89%) saturate(1909%) hue-rotate(86deg) brightness(128%) contrast(106%)
     drop-shadow(0 0 2px rgba(0, 0, 0, 0.637))

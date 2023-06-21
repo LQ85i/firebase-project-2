@@ -1,21 +1,48 @@
 #header {
  background-color: #A9E19B;   
- display: flex;
- justify-content: space-between;
+ display: grid;
+ grid-template-columns: 160px 1fr 160px;
+ 
  align-items: center;
  padding: 10px;
 }
 
-.right button.home {
-    min-width: 40px;
-    min-height: 40px;
-    border: none;
-    background-color: transparent;
-    background-image: url("../Images/icon_menu.svg");
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
+#header .center {
+    float: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#header .timer-container {
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+#header .timer-container.hidden {
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 
-.right button.home:hover {
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.39));
+#header .right button.menu {
+    float: right;
+    font-size: 16px;
+
+    outline: 1px solid rgba(0, 0, 0, 0.507);
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: #C2EFC1;
+    color: rgb(36, 36, 36);
+}
+
+
+@media screen and (max-width: 480px) {
+    #header {
+        grid-template-columns: 100px 1fr 100px;
+    }
+}
+@media screen and (max-width: 330px) {
+    #header {
+        font-size: 13px;
+        grid-template-columns: 70px 1fr 70px;
+    }
 }
