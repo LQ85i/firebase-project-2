@@ -28,10 +28,11 @@ const PreGameView = (props) => {
             <div className='title-2'>Instructions:</div>
             <div className='content'>
                 <ol>
-                    <li>Find the rats shown at the top by clicking them in the artwork.</li>
+                    <li>Find the rats shown at the top by clicking them in the artwork</li>
                     <li>There is a timer when you begin, show off your time in the leaderboard!</li>
-                    <li>You can zoom with scrollwheel and move the picture around by dragging it.</li>
-                    <li>The rats are randomized every time you play.</li>
+                    <li>You can zoom with scrollwheel or pressing the zoom buttons</li>
+                    <li>You can move the picture around by dragging it</li>
+                    <li>The rats are randomized every time you play</li>
                 </ol>
             </div>
             <div className='button-container'>
