@@ -13,9 +13,9 @@ import rat10 from '../Images/rat10.png'
 import icon_check_circle from '../Images/icon_check_circle.svg'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useEffect, useRef, useState } from 'react';
-import checkForCharacter from '../database-functions/checkForCharacter';
+import checkForCharacter from '../database_functions/checkForCharacter';
 import MessageBox from './MessageBox';
-import getActiveCharacters from '../getActiveCharacters';
+import getActiveCharacters from '../Functions/getActiveCharacters';
 
 const GameView = (props) => {
     const { setGameState, characterIDs, setCharacterIDs, setStopTimer } = props;

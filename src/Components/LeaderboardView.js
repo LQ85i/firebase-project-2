@@ -1,6 +1,6 @@
 import "../Styles/LeaderboardView.css"
 import film_rats from '../Images/film-rats-halfsize.jpg'
-import requestLeaderboard from '../database-functions/requestLeaderboard'
+import requestLeaderboard from '../database_functions/requestLeaderboard'
 import { useEffect, useState } from "react";
 
 
