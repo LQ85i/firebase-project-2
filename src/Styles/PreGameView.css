@@ -20,7 +20,7 @@
 #pre-game-view .header .title {
 
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     color: rgb(0, 0, 0);
     letter-spacing: 0.03em;
 }
@@ -81,10 +81,10 @@
     color: rgb(118, 255, 248);
     text-shadow:
         0.11em 0 black,
-        0 0.11em black,
+        0 0.11em 0 black,
         -0.11em 0 black,
-        0 -0.11em black,
-        1.5px 1.5px 0px rgb(0, 0, 0);
+        0 -0.11em 0 black,
+        1.5px 1.5px 3px rgb(0, 0, 0);
     letter-spacing: 0.03em;
 }
 
@@ -96,26 +96,12 @@
 
 #pre-game-view .info-window li {
     margin-top: 20px;
-}
-
-#pre-game-view .info-window button {
-    margin-top: 20px;
-    outline: 1px solid rgba(0, 0, 0, 0.507);
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 5px;
-    background-color: #C2EFC1;
-    color: rgb(36, 36, 36);
-}
-
-#pre-game-view .info-window button:focus {
-    outline: 2px solid rgba(0, 0, 0, 0.555);
-}
-#pre-game-view .info-window button:hover {
-    outline: 2px solid rgba(0, 0, 0, 0.555);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 #pre-game-view .button-container {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     width: min(100%, 300px);

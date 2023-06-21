@@ -17,7 +17,7 @@
         0 0.11em black,
         -0.11em 0 black,
         0 -0.11em black,
-        1.5px 1.5px 0px rgb(0, 0, 0);
+        1.5px 1.5px 3px rgb(0, 0, 0);
     letter-spacing: 0.03em;
 }
 
@@ -39,11 +39,11 @@
     font-weight: 600;
     color: rgb(255, 255, 255);
     text-shadow:
-        0.09em 0 black,
-        0 0.09em black,
-        -0.09em 0 black,
-        0 -0.09em black,
-        1.5px 1.5px 0px rgb(0, 0, 0);
+        0.11em 0 black,
+        0 0.11em black,
+        -0.11em 0 black,
+        0 -0.11em black,
+        1.5px 1.5px 3px rgb(0, 0, 0);
     letter-spacing: 0.03em;
 }
 #header .timer-container.hidden {
@@ -53,21 +53,8 @@
 
 #header .right button.menu {
     float: right;
-    font-size: 16px;
-    outline: 1px solid rgba(0, 0, 0, 0.507);
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 5px;
-    background-color: #C2EFC1;
-    color: rgb(36, 36, 36);
 }
 
-#header .right button.menu:focus {
-    outline: 2px solid rgba(0, 0, 0, 0.555);
-}
-#header .right button.menu:hover {
-    outline: 2px solid rgba(0, 0, 0, 0.555);
-}
 
 
 @media screen and (max-width: 480px) {
