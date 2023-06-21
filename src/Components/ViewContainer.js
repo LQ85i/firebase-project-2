@@ -36,7 +36,7 @@ const ViewContainer = (props) => {
         }
     }
 
-    return (<div>
+    return (<div id='view-container'>
         {getView()}
     </div>);
 }

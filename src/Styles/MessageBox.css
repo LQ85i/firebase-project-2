@@ -49,3 +49,15 @@
     width: 600px;
     background-color: rgba(0, 201, 27, 0.7);
 }
+
+
+@media screen and (max-width: 480px) {
+    #game-view .message-box.character-not-found {
+        width: 350px;
+    }
+}
+@media screen and (max-width: 360px) {
+    #game-view .message-box.character-not-found {
+        width: 300px;
+    }
+}

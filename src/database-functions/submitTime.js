@@ -11,9 +11,10 @@ const submitTime = (name, time) => {
         time: time,
         date: Date.now()
     }
-    addDoc(collectionRef, data).then(() => {
-        // add success
-    })
+    addDoc(collectionRef, data)
+        .then(() => {
+            // add success
+        })
         .catch(error => {
             if (error.code === "permission-denied") {
             }

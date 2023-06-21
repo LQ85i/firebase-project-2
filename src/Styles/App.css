@@ -1,6 +1,7 @@
 #App {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 60px 1fr 30px;
+    min-height: max(810px, 100vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #DCE5DB;
 }

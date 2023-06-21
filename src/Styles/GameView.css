@@ -1,9 +1,11 @@
 #game-view {
     background-color: #DCE5DB;
     min-height: 620px;
-    max-height: 1080px;
+    max-height: calc(100vh - 90px);
     max-width: 100vw;
     position: relative;
+    display: grid;
+    grid-template-rows: 100px minmax(620px, 1fr)
 }
 
 #game-view .header {
@@ -13,6 +15,13 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+}
+#game-view .header .title {
+
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.03em;
 }
 
 #game-view .header .images {
@@ -28,7 +37,6 @@
 
 #game-view .art-container {
     overflow: hidden;
-    max-height: 620px;
     position:relative;
 }
 
@@ -146,6 +154,14 @@
 
 #game-view .clicked-menu .images .frame:active {
     border: 1px solid #000;
+}
+
+
+@media screen and (max-width: 480px) {
+    
+}
+@media screen and (max-width: 350px) {
+    
 }
 
 @keyframes shrink-grow {
