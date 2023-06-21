@@ -2,7 +2,7 @@ import { doc, updateDoc } from "@firebase/firestore"
 import { firestore } from "../firebase_setup/firebase"
 
 
-const handleSubmit = (id, pos, charactersFound, setCharactersFound, setMsgCharNotFound) => {
+const checkForCharacter = (id, pos, charactersFound, setCharactersFound, setMsgCharNotFound) => {
 
     let docRef = doc(firestore, "click_coordinates", "default")
 
@@ -25,4 +25,4 @@ const handleSubmit = (id, pos, charactersFound, setCharactersFound, setMsgCharNo
 
 }
 
-export default handleSubmit
+export default checkForCharacter

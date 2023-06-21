@@ -1,5 +1,3 @@
-
-
 #pre-game-view {
     background-color: #DCE5DB;
     min-height: 620px;
@@ -18,7 +16,7 @@
 
 #pre-game-view .header .frames {
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     gap: 10px;
 }
 
@@ -59,28 +57,28 @@
     padding: 20px;
     transform: translate(-50%, 0) scale(0.1);
     opacity: 0;
-    animation: 0.4s grow-shrink 0.3s forwards;
+    animation: 0.4s grow-shrink 0.1s forwards;
     transform-origin: left;
 }
 
-.info-window .title-1 {
+#pre-game-view .info-window .title-1 {
     font-style: italic;
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 20px;
 }
 
-.info-window .title-2 {
+#pre-game-view .info-window .title-2 {
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.info-window li {
+#pre-game-view .info-window li {
     margin-top: 20px;
 }
 
-.info-window button.start-game {
+#pre-game-view .info-window button.start-game {
     margin-top: 20px;
     outline: 1px solid rgba(0, 0, 0, 0.507);
     font-weight: 900;
@@ -90,14 +88,48 @@
     color: rgb(36, 36, 36);
 }
 
+#pre-game-view .info-window button.show-leaderboard {
+    margin-top: 20px;
+    outline: 1px solid rgba(0, 0, 0, 0.507);
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: #C2EFC1;
+    color: rgb(36, 36, 36);
+}
+
+#pre-game-view .button-container {
+    display: flex;
+    justify-content: center;
+    width: min(100%, 300px);
+    gap: 2vw;
+}
+
 #pre-game-view .art-container {
-    max-height: 970px;
+    max-height: 620px;
     z-index: 1;
     overflow: hidden;
 }
 
 #pre-game-view .art {
     filter: blur(10px);
+}
+
+@media screen and (max-width: 480px) {
+    #pre-game-view .header .frame { 
+        max-width: 35px;
+        min-width: 35px;
+        max-height: 56px;
+        min-height: 56px;
+    }
+    #pre-game-view .info-window {
+        padding: 15px 5px;
+        font-size: 14px;
+    }
+    #pre-game-view .info-window li {
+        margin-top: 10px;
+    }
+    
 }
 
 @keyframes grow-shrink {

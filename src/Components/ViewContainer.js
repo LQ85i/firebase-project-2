@@ -2,6 +2,7 @@ import '../Styles/ViewContainer.css';
 import GameView from './GameView';
 import PostGameView from './PostGameView';
 import PreGameView from './PreGameView';
+import LeaderboardView from './LeaderboardView'
 
 
 const ViewContainer = (props) => {
@@ -26,6 +27,11 @@ const ViewContainer = (props) => {
                 endTime={endTime}
                 characterIDs={characterIDs}
                 setStopTimer={setStopTimer}
+            />
+        } else if(gameState === 3) {
+            return <LeaderboardView
+            setGameState={setGameState}
+            
             />
         }
     }
