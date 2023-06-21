@@ -8,6 +8,7 @@
 
 #App button {
     border-color: lightgrey;
+    white-space: nowrap;
 }
 
 #App button:focus {
@@ -25,4 +26,10 @@
     background-color: #C2EFC1;
     color: rgb(36, 36, 36);
     font-size: 0.9em;
+}
+
+@media screen and (max-width: 480px) {
+    #App button {
+        white-space: normal;
+    }
 }
